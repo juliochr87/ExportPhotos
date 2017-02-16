@@ -39,14 +39,20 @@ namespace ExportPhotos.Utils
             //FIN PRIMERA PAGINA
 
             String cabezera = generarCabezera(beneficiario, cedula, numeroCasa);
-
-            //doc = imprimirCabezera(doc, cabezera);
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_hoja_1.jpg");
+            doc = imprimirCabezera(doc, cabezera);
+ 
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_1.jpg");
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_2.jpg");
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_3.jpg");
             doc.NewPage();
 
-           
-            doc = imprimirImagenesOrden(doc, cabezera, listViewOrden);
+            doc = imprimirCabezera(doc, cabezera);
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_4.jpg");
+            doc.NewPage();
 
+            doc = imprimirImagenesOrden(doc, cabezera, listViewOrden);
+            doc.NewPage();
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_6.jpg");
             doc.Close();
             writer.Close();
 
@@ -67,11 +73,23 @@ namespace ExportPhotos.Utils
             doc = generarPortada(doc, STRING_TITULO_INFORME_ELECTRICO_1, STRING_TITULO_INFORME_ELECTRICO_2, beneficiario, cedula, numeroCasa, numeroPredio, provincia, distrito, corregimiento, fecha, rutaImagenes, listViewOrden);
             //FIN PRIMERA PAGINA
 
-           
+
             String cabezera = generarCabezera(beneficiario, cedula, numeroCasa);
 
+            doc = imprimirCabezera(doc, cabezera);
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_1.jpg");
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_2.jpg");
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_3.jpg");
+            doc.NewPage();
+            doc = imprimirCabezera(doc, cabezera);
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_4a.jpg");
+            doc.NewPage();
+            doc = imprimirCabezera(doc, cabezera);
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_4b.jpg");
+            doc.NewPage();
             doc = imprimirImagenesOrden(doc, cabezera, listViewOrden);
-
+            doc.NewPage();
+            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_6.jpg");
             doc.Close();
             writer.Close();
 

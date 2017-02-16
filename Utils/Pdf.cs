@@ -133,18 +133,20 @@ namespace ExportPhotos.Utils
         {
             int cont = 0;
             int contIma = 0;
-
+           
             foreach (ListViewItem imagen in listViewOrden.Items)
             {
                 if (cont == 0)
                 {
                     doc = imprimirCabezera(doc, cabezera);
-
-                    doc.Add(imprimirImagen(20, 500, contIma, listViewOrden));
+                    Paragraph tit = new Paragraph("INFORME FOTOGRAFICO");
+                    tit.Alignment = Element.ALIGN_LEFT;
+                    doc.Add(tit);
+                    doc.Add(imprimirImagen(20, 470, contIma, listViewOrden));
                 }
                 if (cont == 1)
                 {
-                    doc.Add(imprimirImagen(320, 500, contIma, listViewOrden));
+                    doc.Add(imprimirImagen(320, 470, contIma, listViewOrden));
                 }
                 if (cont == 2)
                 {
@@ -209,5 +211,19 @@ namespace ExportPhotos.Utils
 
             return imagen;
         }
+        public iTextSharp.text.Image imprimirImagen(int x, int y, String rutaImagen)
+        {
+ 
+            iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(rutaImagen);
+            imagen.ScaleAbsoluteWidth(260);
+            imagen.ScaleAbsoluteHeight(200);
+            //  float percentage = 180 / imagen.Width;
+            //  imagen.ScalePercent(percentage * 150);
+            imagen.Alignment = Element.ALIGN_LEFT;
+            imagen.SetAbsolutePosition(x, y);
+
+            return imagen;
+        }
+
     }
 }

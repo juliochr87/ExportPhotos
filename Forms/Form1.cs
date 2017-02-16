@@ -214,7 +214,6 @@ namespace ExportPhotos
                 textBoxNumeroCasa.Text.Equals("") ||
                 textBoxNumeroPredio.Text.Equals("") ||
                 textBoxProvincia.Text.Equals("") ||
-                textBoxRutaImagenes.Text.Equals("") ||
                 textBoxRutaPDF.Text.Equals("") || listViewOrden.Items.Count == 0)
             {
                 labelMensaje.Text = "Por favor complete todos los campos";
