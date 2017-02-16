@@ -87,6 +87,7 @@
     <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Informe.cs" />
     <Compile Include="Utils\IntegerComparer.cs" />
     <Compile Include="Objects\Imagen.cs" />
     <Compile Include="Program.cs" />

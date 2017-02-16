@@ -36,7 +36,6 @@ namespace ExportPhotos
             listViewViviendas.Columns.Add("Corregimiento", 150, HorizontalAlignment.Left);
 
             cargarViviendas();
-
         }
 
         public void iniciarListView()
@@ -82,10 +81,19 @@ namespace ExportPhotos
             cargarListViewViviendas();
 
             label8.Text = listViewOrden.Items.Count.ToString();
-            labelIdModificar.Text = "0";
-            labelIdModificar.Visible = false;
+            
 
             textBoxNumeroCasa.LostFocus += TextBoxNumeroCasa_LostFocus;
+
+            dateTimePicker1.Value = DateTime.Now;
+
+            tabControl1.Click += tabControl1_IndexChange;
+       
+        }
+
+        private void tabControl1_IndexChange(object sender, EventArgs e)
+        {
+            refrescarBusqueda();
         }
 
         private void TextBoxNumeroCasa_LostFocus(object sender, EventArgs e)
@@ -108,8 +116,6 @@ namespace ExportPhotos
                     cargarInformacion(vivienda);
                 }
             }
-
-
         }
 
         public void cargarViviendas()
@@ -128,12 +134,15 @@ namespace ExportPhotos
 
         private void mostrarImagenes()
         {
-
             string[] imgList = Directory.GetFiles(textBoxRutaImagenes.Text, "*.jpg");
 
             if (imgList.Length != 0)
             {
                 int cont = 0;
+                if (imageList.Images.Count != 0)
+                {
+                    cont = imageList.Images.Count;
+                }
                 foreach (String rutaImagen in imgList)
                 {
                     ListViewItem item1 = new ListViewItem(rutaImagen, cont);
@@ -141,7 +150,7 @@ namespace ExportPhotos
                     listView1.Items.Add(item1);
 
                     imageList.Images.Add(Bitmap.FromFile(rutaImagen));
-                    imageListOrden.Images.Add(Bitmap.FromFile(rutaImagen));
+                   // imageListOrden.Images.Add(Bitmap.FromFile(rutaImagen));
                     cont++;
                 }
             }
@@ -150,8 +159,9 @@ namespace ExportPhotos
         private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listViewOrden.Sort();
-          
+            
             ListView lvi = (ListView)sender;
+            
             foreach (ListViewItem l in lvi.Items)
             {
                 if (l.Selected)
@@ -169,6 +179,8 @@ namespace ExportPhotos
 
             label8.Text = listViewOrden.Items.Count.ToString();
             textBoxPos.Text = "";
+
+            cargarImagenesOrden();
         }
 
         private void buttonFolder_Click(object sender, EventArgs e)
@@ -192,8 +204,7 @@ namespace ExportPhotos
 
         private void buttonGenerarPdf_Click(object sender, EventArgs e)
         {
-            
-
+          
             label8.Text = listViewOrden.Items.Count.ToString();
 
             if (textBoxBeneficiario.Text.Equals("") ||
@@ -203,7 +214,6 @@ namespace ExportPhotos
                 textBoxNumeroCasa.Text.Equals("") ||
                 textBoxNumeroPredio.Text.Equals("") ||
                 textBoxProvincia.Text.Equals("") ||
-                textBoxRutaImagenes.Text.Equals("") ||
                 textBoxRutaPDF.Text.Equals("") || listViewOrden.Items.Count == 0)
             {
                 labelMensaje.Text = "Por favor complete todos los campos";
@@ -219,20 +229,20 @@ namespace ExportPhotos
                 if (radioButton3.Checked.Equals(true))
                 {
                     path = textBoxRutaPDF.Text + "\\"+STRING_PREFIJO_INFORME_FOTOGRAFICO + textBoxNumeroCasa.Text + ".pdf";
-                    new Pdf().generarPdfInformeFotografico(path, textBoxBeneficiario.Text, textBoxCedula.Text, textBoxNumeroCasa.Text, textBoxNumeroPredio.Text, textBoxProvincia.Text, textBoxDistrito.Text, textBoxCorregimiento.Text, dateTimePicker1.Text, rutaImagenes, listViewOrden);                 
+                    new Informe().generarPdfInformeFotografico(path, textBoxBeneficiario.Text, textBoxCedula.Text, textBoxNumeroCasa.Text, textBoxNumeroPredio.Text, textBoxProvincia.Text, textBoxDistrito.Text, textBoxCorregimiento.Text, dateTimePicker1.Text, rutaImagenes, listViewOrden);                 
                 }
                 if (radioButton2.Checked.Equals(true))
                 {
                      path = textBoxRutaPDF.Text + "\\" + STRING_PREFIJO_INFORME_HIDROSTATICO + textBoxNumeroCasa.Text + ".pdf";
+                     new Informe().generarPdfInformeHidroestatico(path, textBoxBeneficiario.Text, textBoxCedula.Text, textBoxNumeroCasa.Text, textBoxNumeroPredio.Text, textBoxProvincia.Text, textBoxDistrito.Text, textBoxCorregimiento.Text, dateTimePicker1.Text, rutaImagenes, listViewOrden);
                 }
                 if (radioButton1.Checked.Equals(true))
                 {
                      path = textBoxRutaPDF.Text + "\\" + STRING_PREFIJO_INFORME_ELECTRICO + textBoxNumeroCasa.Text + ".pdf";
+                     new Informe().generarPdfInformeElectrico(path, textBoxBeneficiario.Text, textBoxCedula.Text, textBoxNumeroCasa.Text, textBoxNumeroPredio.Text, textBoxProvincia.Text, textBoxDistrito.Text, textBoxCorregimiento.Text, dateTimePicker1.Text, rutaImagenes, listViewOrden);
                 }
 
                 MessageBox.Show("Informe generado: " + path);
-
-
 
             }
         }
@@ -264,121 +274,6 @@ namespace ExportPhotos
             textBoxProvincia.Text = STRING_NOMBRE_PROVINCIA_DEFECTO;
             // textBoxRutaImagenes.Text = "";
             // textBoxRutaPDF.Text = "";
-        }
- 
-        private void generarPdf()
-        {
-            String path = textBoxRutaPDF.Text + "\\" + textBoxNumeroCasa.Text + ".pdf";
-            String textoTituloPortada = "No. de casa: " + textBoxNumeroCasa.Text + " / Nombre beneficiario: " + textBoxBeneficiario.Text + " / Cédula: " + textBoxCedula.Text + " / Provincia: " + textBoxProvincia.Text + " / Corregimiento: " + textBoxCorregimiento.Text + " / Distrito: " + textBoxDistrito.Text;
-            String cabezera = "Casa No. " + textBoxNumeroCasa.Text + " / Beneficiario: " + textBoxBeneficiario.Text + " / Cédula: " + textBoxCedula.Text;
-            String rutaImagenes = textBoxRutaImagenes.Text;
-
-            iTextSharp.text.Image imagenLogo = iTextSharp.text.Image.GetInstance("C:/Programa/logo.jpg");
-            imagenLogo.BorderWidth = 0;
-            imagenLogo.ScalePercent(50f);
-            imagenLogo.Alignment = Element.ALIGN_CENTER;
-
-            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-
-            Document doc = new Document(PageSize.LETTER);
-            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
-
-            // Le colocamos el título y el autor
-            // **Nota: Esto no será visible en el documento
-            doc.AddTitle("Mecontelsa.S.A.");
-            doc.AddCreator("Mecontelsa.S.A.");
-
-            // Abrimos el archivo
-            doc.Open();
-
-
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //PRIMERA PAGINA
-
-
-            doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" "));
-            doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" ")); doc.Add(new Paragraph(" "));
-            // Escribimos el encabezamiento en el documento
-            Paragraph tituloPortada = new Paragraph(textoTituloPortada);
-            tituloPortada.Alignment = Element.ALIGN_CENTER;
-            //tituloPortada.PaddingTop = 100;
-            // tituloPortada.PaddingTop = 300;
-            doc.Add(tituloPortada);
-            doc.Add(Chunk.NEWLINE);
-            doc.Add(imagenLogo);
-
-            doc.NewPage();
-
-
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //SEGUNDA PAGINA EN ADELANTE
-
-            int cont = 0;
-            int contIma = 0;
-            Paragraph up = new Paragraph(cabezera);
-            up.Alignment = Element.ALIGN_LEFT;
-
-
-            foreach (ListViewItem imagen in listViewOrden.Items)
-            {
-                if (cont == 0)
-                {
-                    doc.Add(up);
-                    doc.Add(Chunk.NEWLINE);
-
-                    doc.Add(imprimirImagen(20, 500, contIma));
-                }
-                if (cont == 1)
-                {
-                    doc.Add(imprimirImagen(320, 500, contIma));
-                }
-                if (cont == 2)
-                {
-                    doc.Add(imprimirImagen(20, 260, contIma));
-                }
-                if (cont == 3)
-                {
-                    doc.Add(imprimirImagen(320, 260, contIma));
-                }
-                if (cont == 4)
-                {
-                    doc.Add(imprimirImagen(20, 50, contIma));
-                }
-                if (cont == 5)
-                {
-                    doc.Add(imprimirImagen(320, 50, contIma));
-                    cont = -1;
-                    doc.NewPage();
-                }
-
-                cont++;
-                contIma++;
-            }
-
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            doc.Close();
-            writer.Close();
-
-        }
-
-        private iTextSharp.text.Image imprimirImagen(int x, int y, int item)
-        {
-            String rutaImagenes = textBoxRutaImagenes.Text;
-
-            String rutaImagen = listViewOrden.Items[item].SubItems[1].Text.ToString();
-
-            iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(rutaImagen);
-            imagen.ScaleAbsoluteWidth(260);
-            imagen.ScaleAbsoluteHeight(200);
-            //  float percentage = 180 / imagen.Width;
-            //  imagen.ScalePercent(percentage * 150);
-            imagen.Alignment = Element.ALIGN_LEFT;
-            imagen.SetAbsolutePosition(x, y);
-
-            return imagen;
         }
  
         private void button4_Click(object sender, EventArgs e)
@@ -423,7 +318,6 @@ namespace ExportPhotos
 
         private void cargarInformacion(Vivienda vivienda)
         {
-            listViewOrden.Items.Clear();
 
             textBoxBeneficiario.Text = vivienda.Beneficiario;
             textBoxCedula.Text = vivienda.Cedula;
@@ -432,17 +326,59 @@ namespace ExportPhotos
             textBoxNumeroCasa.Text = vivienda.NumeroCasa;
             textBoxNumeroPredio.Text = vivienda.Predio;
             textBoxProvincia.Text = vivienda.Provincia;
-            labelIdModificar.Text = vivienda.Id;
+             
+            refrescarListaOrden(vivienda);
+        }
 
-            List<Imagen> listaImagenes = new ImagenDao().consultarImagenes(vivienda.Id);
+        private void cargarImagenesOrden()
+        {
+            imageListOrden.Images.Clear();
+
+            foreach(ListViewItem item in listViewOrden.Items)
+            {
+                String ruta = item.SubItems[2].Text;
+
+                imageListOrden.Images.Add(Bitmap.FromFile(ruta));
+                item.ImageIndex = item.Index;
+            }
+
+
+        }
+
+        private void refrescarListaOrden(Vivienda vivienda)
+        {
+            listViewOrden.Items.Clear();
+
+            String reporte = "";
+            if (radioButton1.Checked)
+                reporte = "E";
+            if (radioButton2.Checked)
+                reporte = "H";
+            if (radioButton3.Checked)
+                reporte = "F";
+            
+            List<Imagen> listaImagenes = new ImagenDao().consultarImagenes(vivienda.Id, reporte);
+
+            int cont = 0;
+            if (imageList.Images.Count != 0)
+            {
+                cont = imageList.Images.Count;
+            }
             foreach (Imagen i in listaImagenes)
             {
-                ListViewItem item = new ListViewItem(new[] { i.Orden, i.Ruta });
+                //imageListOrden.Images.Add(Bitmap.FromFile(i.Ruta));
+               // imageList.Images.Add(Bitmap.FromFile(i.Ruta));
+
+                ListViewItem item = new ListViewItem(new[] { "", i.Orden, i.Ruta });
+               // item.ImageIndex = cont;
 
                 listViewOrden.Items.Add(item);
 
+                cont++;
             }
             label8.Text = listViewOrden.Items.Count.ToString();
+
+            cargarImagenesOrden();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -500,18 +436,38 @@ namespace ExportPhotos
                 String rutaImagenes = textBoxRutaImagenes.Text;
                 String rutaPDF = textBoxRutaPDF.Text;
 
-                if (!labelIdModificar.Equals(""))
-                {
-                    new ViviendaDao().borrarVivienda(labelIdModificar.Text);
-                    new ImagenDao().borrarImagen(labelIdModificar.Text);
-                }
-                int id = new ViviendaDao().guardarVivienda(numeroCasa, beneficiario, cedula, predio, provincia, distrito, corregimiento);
+                String reporte = "";
+                if (radioButton1.Checked)
+                    reporte = "E";
+                if (radioButton2.Checked)
+                    reporte = "H";
+                if (radioButton3.Checked)
+                    reporte = "F";
 
-                foreach (ListViewItem imagen in listViewOrden.Items)
+
+                Vivienda vivienda = new ViviendaDao().consultarViviendaPorNumeroCasa(textBoxNumeroCasa.Text);
+
+                if (vivienda.Id != null)
                 {
-                    String orden = imagen.SubItems[0].Text;
-                    String rutaImagen = imagen.SubItems[1].Text;
-                    new ImagenDao().guardarImagen(rutaImagen, orden, id);
+                    new ImagenDao().borrarImagen(vivienda.Id, reporte);
+
+                    foreach (ListViewItem imagen in listViewOrden.Items)
+                    {
+                        String orden = imagen.SubItems[1].Text;
+                        String rutaImagen = imagen.SubItems[2].Text;
+                        new ImagenDao().guardarImagen(rutaImagen, orden, Convert.ToInt16(vivienda.Id), reporte);
+                    }
+                }
+                else
+                {
+                    int id = new ViviendaDao().guardarVivienda(numeroCasa, beneficiario, cedula, predio, provincia, distrito, corregimiento);
+
+                    foreach (ListViewItem imagen in listViewOrden.Items)
+                    {
+                        String orden = imagen.SubItems[1].Text;
+                        String rutaImagen = imagen.SubItems[2].Text;
+                        new ImagenDao().guardarImagen(rutaImagen, orden, id, reporte);
+                    }
                 }
 
                 MessageBox.Show("Registro guardado correctamente!");
@@ -523,7 +479,7 @@ namespace ExportPhotos
 
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void refrescarBusqueda()
         {
             String busqueda = textBoxConsulta.Text;
 
@@ -537,7 +493,11 @@ namespace ExportPhotos
                 item.ImageKey = v.Id;
                 listViewViviendas.Items.Add(item);
             }
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
 
+            refrescarBusqueda();
         }
 
         private void labelMensajeVivienda_Click(object sender, EventArgs e)
@@ -549,5 +509,42 @@ namespace ExportPhotos
         {
 
         }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                actualizarOrdenCambiarRadioButton();
+            }
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                actualizarOrdenCambiarRadioButton();
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                actualizarOrdenCambiarRadioButton();
+            }
+        }
+
+        private void actualizarOrdenCambiarRadioButton()
+        {
+            String numeroCasa = textBoxNumeroCasa.Text;
+            if(!numeroCasa.Equals(""))
+            { 
+                Vivienda vivienda = new ViviendaDao().consultarViviendaPorNumeroCasa(numeroCasa);
+                if (vivienda.Id != null)
+                    cargarInformacion(vivienda);
+            }
+        }
+
     }
 }
