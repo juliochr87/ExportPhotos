@@ -348,7 +348,7 @@ namespace ExportPhotos
 
         private void refrescarListaOrden(Vivienda vivienda)
         {
-
+            listViewOrden.Items.Clear();
 
             String reporte = "";
             if (radioButton1.Checked)
@@ -357,7 +357,6 @@ namespace ExportPhotos
                 reporte = "H";
             if (radioButton3.Checked)
                 reporte = "F";
-
             
             List<Imagen> listaImagenes = new ImagenDao().consultarImagenes(vivienda.Id, reporte);
 
@@ -472,8 +471,6 @@ namespace ExportPhotos
                     }
                 }
 
-                
-
                 MessageBox.Show("Registro guardado correctamente!");
             }
         }
@@ -518,10 +515,7 @@ namespace ExportPhotos
         {
             if (radioButton1.Checked)
             {
-                String id = textBoxNumeroCasa.Text;
-               // Vivienda vivienda = new ViviendaDao().consultarVivienda(id);
-
-               // cargarInformacion(vivienda);
+                actualizarOrdenCambiarRadioButton();
             }
 
         }
@@ -530,10 +524,7 @@ namespace ExportPhotos
         {
             if (radioButton2.Checked)
             {
-                String id = textBoxNumeroCasa.Text;
-              //  Vivienda vivienda = new ViviendaDao().consultarVivienda(id);
-
-               // cargarInformacion(vivienda);
+                actualizarOrdenCambiarRadioButton();
             }
         }
 
@@ -541,11 +532,20 @@ namespace ExportPhotos
         {
             if (radioButton3.Checked)
             {
-                String id = textBoxNumeroCasa.Text;
-               // Vivienda vivienda = new ViviendaDao().consultarVivienda(id);
-
-              //  cargarInformacion(vivienda);
+                actualizarOrdenCambiarRadioButton();
             }
         }
+
+        private void actualizarOrdenCambiarRadioButton()
+        {
+            String numeroCasa = textBoxNumeroCasa.Text;
+            if(!numeroCasa.Equals(""))
+            { 
+                Vivienda vivienda = new ViviendaDao().consultarViviendaPorNumeroCasa(numeroCasa);
+                if (vivienda.Id != null)
+                    cargarInformacion(vivienda);
+            }
+        }
+
     }
 }
