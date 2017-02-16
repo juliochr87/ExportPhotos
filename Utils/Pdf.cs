@@ -12,18 +12,15 @@ using System.Windows.Forms;
 namespace ExportPhotos.Utils
 {
     public class Pdf
-    {
-        private static String STRING_TITULO_FOTOGRAFICO_1 = ConfigurationManager.AppSettings["TITULO_INFORME_FOTOGRAFICO_1"];
-        private static String STRING_TITULO_FOTOGRAFICO_2 = ConfigurationManager.AppSettings["TITULO_INFORME_FOTOGRAFICO_2"];
-
+    {        
         private static String STRING_BENEFICIARIO = "      BENEFICIARIO:     ";
         private static String STRING_CEDULA =       "      CEDULA:                ";
         private static String STRING_NUMERO_CASA =  "      NO. CASA:             ";
         private static String STRING_PREDIO =       "      NO. PREDIO:         ";
         private static String STRING_UBICACION =    "      UBICACIÓN:          ";
         private static String STRING_FECHA =        "      FECHA:                 ";
-
-        private void agregarEspacios(Document doc, int cantidad)
+       
+        public void agregarEspacios(Document doc, int cantidad)
         {
             for (int i = 0; i <= cantidad; i++)
             {
@@ -31,10 +28,15 @@ namespace ExportPhotos.Utils
             }
         }
 
-        public void generarPdfInformeFotografico(String path, String beneficiario, String cedula, String numeroCasa, String numeroPredio, String provincia, String distrito, String corregimiento, String fecha, String rutaImagenes, ListView listViewOrden)
+        public String generarCabezera(String beneficiario, String cedula, String numeroCasa)
         {
             String cabezera = "Beneficiario: " + beneficiario + " / Cédula: " + cedula + " / Casa No.: " + numeroCasa;
 
+            return cabezera;
+        }
+
+        public Document generarPortada(Document doc,String titulo1, String titulo2, String beneficiario, String cedula, String numeroCasa, String numeroPredio, String provincia, String distrito, String corregimiento, String fecha, String rutaImagenes, ListView listViewOrden)
+        {
             String StringTituloBeneficiario = STRING_BENEFICIARIO + beneficiario.ToUpper();
             String StringTituloCedula = STRING_CEDULA + cedula.ToUpper();
             String StringTituloNumeroCasa = STRING_NUMERO_CASA + numeroCasa.ToUpper();
@@ -47,32 +49,15 @@ namespace ExportPhotos.Utils
             //imagenLogo.ScalePercent(50f);
             //imagenLogo.Alignment = Element.ALIGN_CENTER;
 
-            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-
-            Document doc = new Document(PageSize.LETTER);
-            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
-
-            // Le colocamos el título y el autor
-            // **Nota: Esto no será visible en el documento
-            doc.AddTitle("Mecontelsa.S.A.");
-            doc.AddCreator("Mecontelsa.S.A.");
-
-            // Abrimos el archivo
-            doc.Open();
-
-
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //PRIMERA PAGINA
-
             doc.Add(imprimirImagen(160, 550, 0, listViewOrden));
 
             agregarEspacios(doc, 16);
- 
+
             // Escribimos el encabezamiento en el documento
-            Paragraph tituloPortada = new Paragraph(STRING_TITULO_FOTOGRAFICO_1);
+            Paragraph tituloPortada = new Paragraph(titulo1);
             tituloPortada.Alignment = Element.ALIGN_CENTER;
-            
-            Paragraph tituloPortada2 = new Paragraph(STRING_TITULO_FOTOGRAFICO_2);
+
+            Paragraph tituloPortada2 = new Paragraph(titulo2);
             tituloPortada2.Alignment = Element.ALIGN_CENTER;
 
             Paragraph tituloBeneficiario = new Paragraph(StringTituloBeneficiario);
@@ -103,37 +88,57 @@ namespace ExportPhotos.Utils
             doc.Add(Chunk.NEWLINE);
             doc.Add(Chunk.NEWLINE);
 
-            doc.Add(tituloBeneficiario);        
-            doc.Add(tituloCedula);           
-            doc.Add(tituloNumCasa);    
-            doc.Add(tituloNumPredio);            
-            doc.Add(tituloUbicacion);          
+            doc.Add(tituloBeneficiario);
+            doc.Add(tituloCedula);
+            doc.Add(tituloNumCasa);
+            doc.Add(tituloNumPredio);
+            doc.Add(tituloUbicacion);
             doc.Add(tituloFecha);
             doc.Add(Chunk.NEWLINE);
             // doc.Add(imagenLogo);
 
             doc.NewPage();
 
+            return doc;
+        }
 
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //SEGUNDA PAGINA EN ADELANTE
+        public Document imprimirImagenEstatica(Document doc, String rutaImagen)
+        {
+            iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(rutaImagen);
+            imagen.BorderWidth = 0;
+            imagen.ScalePercent(50f);
+            imagen.Alignment = Element.ALIGN_CENTER;
 
-            int cont = 0;
-            int contIma = 0;
+            doc.Add(imagen);
+
+            return doc;
+        }
+
+        public Document imprimirCabezera(Document doc, String cabezera)
+        {
             Paragraph up = new Paragraph(cabezera);
             up.Alignment = Element.ALIGN_LEFT;
 
             Paragraph upLine = new Paragraph("_______________________________________________________________________________");
             upLine.Alignment = Element.ALIGN_LEFT;
 
-         
+            doc.Add(up);
+            doc.Add(upLine);
+            doc.Add(Chunk.NEWLINE);
+
+            return doc;
+        }
+
+        public Document imprimirImagenesOrden(Document doc, String cabezera, ListView listViewOrden)
+        {
+            int cont = 0;
+            int contIma = 0;
+
             foreach (ListViewItem imagen in listViewOrden.Items)
             {
                 if (cont == 0)
                 {
-                    doc.Add(up);             
-                    doc.Add(upLine);
-                    doc.Add(Chunk.NEWLINE);
+                    doc = imprimirCabezera(doc, cabezera);
 
                     doc.Add(imprimirImagen(20, 500, contIma, listViewOrden));
                 }
@@ -166,15 +171,10 @@ namespace ExportPhotos.Utils
 
             }
 
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            doc.Close();
-            writer.Close();
-
-            AddPageNumber(path);
+            return doc;
         }
 
-        private void AddPageNumber(String ruta)
+        public void AddPageNumber(String ruta)
         {
             byte[] bytes = File.ReadAllBytes(ruta);
             Font blackFont = FontFactory.GetFont("Arial", 12, Font.NORMAL, BaseColor.BLACK);
@@ -194,7 +194,7 @@ namespace ExportPhotos.Utils
             File.WriteAllBytes(ruta, bytes);
         }
 
-        private iTextSharp.text.Image imprimirImagen(int x, int y, int item, ListView listViewOrden)
+        public iTextSharp.text.Image imprimirImagen(int x, int y, int item, ListView listViewOrden)
         {     
 
             String rutaImagen = listViewOrden.Items[item].SubItems[2].Text.ToString();

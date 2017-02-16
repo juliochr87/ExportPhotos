@@ -10,11 +10,22 @@ namespace ExportPhotos.Dao
 {
     public class ImagenDao : Dao
     {
-        public void guardarImagen(String rutaImagen, String orden, int idVivienda)
+        public void guardarImagen(String rutaImagen, String orden, int idVivienda, String tipo)
         {
             OleDbCommand oleDbCmd = openConnection();
 
-            oleDbCmd.CommandText = "insert into T_IMAGEN (ruta_imagen, id_vivienda, orden) values ('" + rutaImagen + "','" + idVivienda.ToString() + "','" + orden + "');";
+            oleDbCmd.CommandText = "insert into T_IMAGEN (ruta_imagen, id_vivienda, orden,reporte) values ('" + rutaImagen + "','" + idVivienda.ToString() + "','" + orden + "','" + tipo + "');";
+
+            int temp = oleDbCmd.ExecuteNonQuery();
+
+            closeConnection(oleDbCmd);
+        }
+
+        public void borrarImagen(String idVivienda, String reporte)
+        {
+            OleDbCommand oleDbCmd = openConnection();
+
+            oleDbCmd.CommandText = "delete from T_IMAGEN where id_vivienda = " + idVivienda.ToString() + " and reporte='" + reporte + "'";
 
             int temp = oleDbCmd.ExecuteNonQuery();
 
@@ -31,12 +42,11 @@ namespace ExportPhotos.Dao
 
             closeConnection(oleDbCmd);
         }
-      
-        public List<Imagen> consultarImagenes(String idVivienda)
+        public List<Imagen> consultarImagenes(String idVivienda,String reporte)
         {
             OleDbCommand oleDbCmd = openConnection();
 
-            oleDbCmd.CommandText = "select * from T_IMAGEN where id_vivienda = " + idVivienda + "";
+            oleDbCmd.CommandText = "select * from T_IMAGEN where id_vivienda = " + idVivienda + " and reporte='"+reporte+"'";
 
             OleDbDataReader reader = oleDbCmd.ExecuteReader();
 
@@ -49,6 +59,7 @@ namespace ExportPhotos.Dao
                     Imagen imagen = new Imagen();
                     imagen.Ruta = reader.GetValue(1).ToString();
                     imagen.Orden = reader.GetValue(3).ToString();
+                    imagen.Reporte = reader.GetValue(4).ToString();
 
                     listaImagenes.Add(imagen);
                 }

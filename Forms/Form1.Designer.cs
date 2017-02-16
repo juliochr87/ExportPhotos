@@ -36,7 +36,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.labelIdModificar = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -81,8 +82,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.listViewViviendas = new System.Windows.Forms.ListView();
             this.imageListOrden = new System.Windows.Forms.ImageList(this.components);
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -150,7 +149,6 @@
             // 
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.dateTimePicker1);
-            this.groupBox5.Controls.Add(this.labelIdModificar);
             this.groupBox5.Controls.Add(this.button7);
             this.groupBox5.Controls.Add(this.labelMensaje);
             this.groupBox5.Controls.Add(this.buttonGenerarPdf);
@@ -161,14 +159,24 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Reportes";
             // 
-            // labelIdModificar
+            // label11
             // 
-            this.labelIdModificar.AutoSize = true;
-            this.labelIdModificar.Location = new System.Drawing.Point(6, 236);
-            this.labelIdModificar.Name = "labelIdModificar";
-            this.labelIdModificar.Size = new System.Drawing.Size(54, 17);
-            this.labelIdModificar.TabIndex = 8;
-            this.labelIdModificar.Text = "label11";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(14, 23);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(102, 17);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Fecha informe:";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(120, 21);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(112, 22);
+            this.dateTimePicker1.TabIndex = 13;
+            this.dateTimePicker1.Value = new System.DateTime(2017, 2, 13, 23, 0, 49, 0);
             // 
             // button7
             // 
@@ -451,6 +459,7 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Informe Fotográfico";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -461,6 +470,7 @@
             this.radioButton2.TabIndex = 10;
             this.radioButton2.Text = "Informe Hidroestático";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -471,6 +481,7 @@
             this.radioButton1.TabIndex = 9;
             this.radioButton1.Text = "Informe Electrico";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // label10
             // 
@@ -601,25 +612,6 @@
             this.imageListOrden.ImageSize = new System.Drawing.Size(16, 16);
             this.imageListOrden.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(120, 21);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(112, 22);
-            this.dateTimePicker1.TabIndex = 13;
-            this.dateTimePicker1.Value = new System.DateTime(2017, 2, 13, 23, 0, 49, 0);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(14, 23);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(102, 17);
-            this.label11.TabIndex = 14;
-            this.label11.Text = "Fecha informe:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -697,14 +689,13 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox textBoxConsulta;
-        private System.Windows.Forms.ImageList imageListOrden;
-        private System.Windows.Forms.Label labelIdModificar;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ImageList imageListOrden;
     }
 }
 

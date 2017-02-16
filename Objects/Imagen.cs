@@ -6,6 +6,7 @@ namespace ExportPhotos.Objects
     {
         String ruta;
         String orden;
+        String reporte;
 
         public string Ruta
         {
@@ -30,6 +31,19 @@ namespace ExportPhotos.Objects
             set
             {
                 orden = value;
+            }
+        }
+
+        public string Reporte
+        {
+            get
+            {
+                return reporte;
+            }
+
+            set
+            {
+                reporte = value;
             }
         }
     }
