@@ -122,7 +122,9 @@ namespace ExportPhotos.Utils
             Paragraph upLine = new Paragraph("_______________________________________________________________________________");
             upLine.Alignment = Element.ALIGN_LEFT;
 
+           
             doc.Add(up);
+            doc.Add(imprimirImagenCabezera(460, 720, "C:/Programa/images/logo.jpg"));
             doc.Add(upLine);
             doc.Add(Chunk.NEWLINE);
 
@@ -207,6 +209,19 @@ namespace ExportPhotos.Utils
             //  float percentage = 180 / imagen.Width;
             //  imagen.ScalePercent(percentage * 150);
             imagen.Alignment = Element.ALIGN_LEFT;
+            imagen.SetAbsolutePosition(x, y);
+
+            return imagen;
+        }
+        public iTextSharp.text.Image imprimirImagenCabezera(int x, int y, String rutaImagen)
+        {
+  
+            iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(rutaImagen);
+            imagen.ScaleAbsoluteWidth(110);
+            imagen.ScaleAbsoluteHeight(50);
+            //  float percentage = 180 / imagen.Width;
+            //  imagen.ScalePercent(percentage * 150);
+            imagen.Alignment = Element.ALIGN_RIGHT;
             imagen.SetAbsolutePosition(x, y);
 
             return imagen;

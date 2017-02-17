@@ -52,6 +52,7 @@ namespace ExportPhotos.Utils
 
             doc = imprimirImagenesOrden(doc, cabezera, listViewOrden);
             doc.NewPage();
+            doc = imprimirCabezera(doc, cabezera);
             doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_6.jpg");
             doc.Close();
             writer.Close();
@@ -89,6 +90,7 @@ namespace ExportPhotos.Utils
             doc.NewPage();
             doc = imprimirImagenesOrden(doc, cabezera, listViewOrden);
             doc.NewPage();
+            doc = imprimirCabezera(doc, cabezera);
             doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_6.jpg");
             doc.Close();
             writer.Close();
