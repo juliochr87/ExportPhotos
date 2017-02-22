@@ -138,7 +138,7 @@ namespace ExportPhotos.Utils
            
             foreach (ListViewItem imagen in listViewOrden.Items)
             {
-                if (cont == 0)
+                if (cont == 1)
                 {
                     doc = imprimirCabezera(doc, cabezera);
                     Paragraph tit = new Paragraph("INFORME FOTOGRAFICO");
@@ -146,26 +146,26 @@ namespace ExportPhotos.Utils
                     doc.Add(tit);
                     doc.Add(imprimirImagen(20, 470, contIma, listViewOrden));
                 }
-                if (cont == 1)
+                if (cont == 2)
                 {
                     doc.Add(imprimirImagen(320, 470, contIma, listViewOrden));
                 }
-                if (cont == 2)
+                if (cont == 3)
                 {
                     doc.Add(imprimirImagen(20, 260, contIma, listViewOrden));
                 }
-                if (cont == 3)
+                if (cont == 4)
                 {
                     doc.Add(imprimirImagen(320, 260, contIma, listViewOrden));
                 }
-                if (cont == 4)
+                if (cont == 5)
                 {
                     doc.Add(imprimirImagen(20, 50, contIma, listViewOrden));
                 }
-                if (cont == 5)
+                if (cont == 6)
                 {
                     doc.Add(imprimirImagen(320, 50, contIma, listViewOrden));
-                    cont = -1;
+                    cont = 0;
 
                     doc.NewPage();
                 }
