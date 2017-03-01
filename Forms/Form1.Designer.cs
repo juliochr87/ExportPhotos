@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.buttonGenerarPdf = new System.Windows.Forms.Button();
-            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.folderBrowserDialogInforme = new System.Windows.Forms.FolderBrowserDialog();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.labelMensaje = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -82,6 +82,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.listViewViviendas = new System.Windows.Forms.ListView();
             this.imageListOrden = new System.Windows.Forms.ImageList(this.components);
+            this.folderBrowserDialogImagenes = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -644,7 +645,7 @@
         #endregion
 
         private System.Windows.Forms.Button buttonGenerarPdf;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogInforme;
         private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.Label labelMensaje;
         private System.Windows.Forms.TabControl tabControl1;
@@ -696,6 +697,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ImageList imageListOrden;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogImagenes;
     }
 }
 

@@ -35,7 +35,7 @@ namespace ExportPhotos.Utils
             doc.Open();
 
             //PRIMERA PAGINA PORTADA
-            doc = generarPortada(doc, STRING_TITULO_INFORME_ELECTRICO_1, STRING_TITULO_INFORME_ELECTRICO_2, beneficiario, cedula, numeroCasa, numeroPredio, provincia, distrito, corregimiento, fecha, rutaImagenes, listViewOrden);
+            doc = generarPortada(doc, STRING_TITULO_INFORME_HIDROESTATICO_1, STRING_TITULO_INFORME_HIDROESTATICO_2, beneficiario, cedula, numeroCasa, numeroPredio, provincia, distrito, corregimiento, fecha, rutaImagenes, listViewOrden);
             //FIN PRIMERA PAGINA
 
             String cabezera = generarCabezera(beneficiario, cedula, numeroCasa);

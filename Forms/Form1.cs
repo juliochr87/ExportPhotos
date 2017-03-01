@@ -5,6 +5,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -13,6 +14,11 @@ namespace ExportPhotos
 {
     public partial class Form1 : Form
     {
+        private static String STRING_RUTA_INFORMES = ConfigurationManager.AppSettings["RUTA_INFORME"];
+        private static String STRING_RUTA_IMAGENES = ConfigurationManager.AppSettings["RUTA_IMAGEN"];
+
+        private static String STRING_TAB = ConfigurationManager.AppSettings["TAB"];
+
         private static String STRING_NOMBRE_PROVINCIA_DEFECTO = "Darien";
         private static String STRING_PREFIJO_INFORME_FOTOGRAFICO = "IF_";
         private static String STRING_PREFIJO_INFORME_ELECTRICO = "IE_";
@@ -88,7 +94,11 @@ namespace ExportPhotos
             dateTimePicker1.Value = DateTime.Now;
 
             tabControl1.Click += tabControl1_IndexChange;
-       
+
+            folderBrowserDialogInforme.SelectedPath = STRING_RUTA_INFORMES;
+
+            folderBrowserDialogImagenes.SelectedPath = STRING_RUTA_IMAGENES;
+
         }
 
         private void tabControl1_IndexChange(object sender, EventArgs e)
@@ -185,10 +195,10 @@ namespace ExportPhotos
 
         private void buttonFolder_Click(object sender, EventArgs e)
         {
-
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            SendKeys.Send(STRING_TAB);
+            if (folderBrowserDialogImagenes.ShowDialog() == DialogResult.OK)
             {
-                textBoxRutaImagenes.Text = folderBrowserDialog.SelectedPath;
+                textBoxRutaImagenes.Text = folderBrowserDialogImagenes.SelectedPath;
                 mostrarImagenes();
             }
 
@@ -196,9 +206,10 @@ namespace ExportPhotos
 
         private void buttonRutaPdf_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            SendKeys.Send(STRING_TAB);
+            if (folderBrowserDialogInforme.ShowDialog() == DialogResult.OK)
             {
-                textBoxRutaPDF.Text = folderBrowserDialog.SelectedPath;
+                textBoxRutaPDF.Text = folderBrowserDialogInforme.SelectedPath;
             }
         }
 
