@@ -206,9 +206,10 @@ namespace ExportPhotos.Utils
             iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(rutaImagen);
             imagen.ScaleAbsoluteWidth(260);
             imagen.ScaleAbsoluteHeight(200);
+           
             //  float percentage = 180 / imagen.Width;
             //  imagen.ScalePercent(percentage * 150);
-            imagen.Alignment = Element.ALIGN_LEFT;
+           // imagen.Alignment = Element.ALIGN_LEFT;
             imagen.SetAbsolutePosition(x, y);
 
             return imagen;
