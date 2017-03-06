@@ -12,7 +12,9 @@ using System.Windows.Forms;
 namespace ExportPhotos.Utils
 {
     public class Pdf
-    {        
+    {
+        private static String STRING_RUTA_IMAGENES = ConfigurationManager.AppSettings["RUTA_IMAGENES_FIJAS"];
+
         private static String STRING_BENEFICIARIO = "      BENEFICIARIO:     ";
         private static String STRING_CEDULA =       "      CEDULA:                ";
         private static String STRING_NUMERO_CASA =  "      NO. CASA:             ";
@@ -124,7 +126,7 @@ namespace ExportPhotos.Utils
 
            
             doc.Add(up);
-            doc.Add(imprimirImagenCabezera(460, 720, "C:/Programa/images/logo.jpg"));
+            doc.Add(imprimirImagenCabezera(460, 720, STRING_RUTA_IMAGENES + "/logo.jpg"));
             doc.Add(upLine);
             doc.Add(Chunk.NEWLINE);
 

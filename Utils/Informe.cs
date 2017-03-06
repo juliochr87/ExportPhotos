@@ -13,6 +13,8 @@ namespace ExportPhotos.Utils
 {
     public class Informe : Pdf
     {
+        private static String STRING_RUTA_IMAGENES = ConfigurationManager.AppSettings["RUTA_IMAGENES_FIJAS"];
+
         private static String STRING_TITULO_FOTOGRAFICO_1 = ConfigurationManager.AppSettings["TITULO_INFORME_FOTOGRAFICO_1"];
         private static String STRING_TITULO_FOTOGRAFICO_2 = ConfigurationManager.AppSettings["TITULO_INFORME_FOTOGRAFICO_2"];
 
@@ -41,19 +43,19 @@ namespace ExportPhotos.Utils
             String cabezera = generarCabezera(beneficiario, cedula, numeroCasa);
             doc = imprimirCabezera(doc, cabezera);
  
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_1.jpg");
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_2.jpg");
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_3.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/hidroestatico/Hidro_1.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/hidroestatico/Hidro_2.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/hidroestatico/Hidro_3.jpg");
             doc.NewPage();
 
             doc = imprimirCabezera(doc, cabezera);
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_4.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/hidroestatico/Hidro_4.jpg");
             doc.NewPage();
 
             doc = imprimirImagenesOrden(doc, cabezera, listViewOrden);
             doc.NewPage();
             doc = imprimirCabezera(doc, cabezera);
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/hidroestatico/Hidro_6.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/hidroestatico/Hidro_6.jpg");
             doc.Close();
             writer.Close();
 
@@ -78,20 +80,20 @@ namespace ExportPhotos.Utils
             String cabezera = generarCabezera(beneficiario, cedula, numeroCasa);
 
             doc = imprimirCabezera(doc, cabezera);
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_1.jpg");
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_2.jpg");
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_3.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/electrico/Electrico_1.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/electrico/Electrico_2.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/electrico/Electrico_3.jpg");
             doc.NewPage();
             doc = imprimirCabezera(doc, cabezera);
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_4a.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/Electrico_4a.jpg");
             doc.NewPage();
             doc = imprimirCabezera(doc, cabezera);
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_4b.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/electrico/Electrico_4b.jpg");
             doc.NewPage();
             doc = imprimirImagenesOrden(doc, cabezera, listViewOrden);
             doc.NewPage();
             doc = imprimirCabezera(doc, cabezera);
-            doc = imprimirImagenEstatica(doc, "C:/Programa/images/electrico/Electrico_6.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/electrico/Electrico_6.jpg");
             doc.Close();
             writer.Close();
 
