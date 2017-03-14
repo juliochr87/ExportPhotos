@@ -53,13 +53,18 @@ namespace ExportPhotos
             listView1.FullRowSelect = true;
             listView1.GridLines = false;
             listView1.Columns.Add("Imagen", 600, HorizontalAlignment.Left);
+
             listView1.Click += ListView1_SelectedIndexChanged;
-            imageList.ImageSize = new Size(156, 100);
+         
+
+             imageList.ImageSize = new Size(156, 100);
             imageList.ColorDepth = ColorDepth.Depth32Bit;
             listView1.LargeImageList = imageList;
 
             textBoxProvincia.Text = STRING_NOMBRE_PROVINCIA_DEFECTO;
         }
+
+    
 
         public void iniciarListViewOrden()
         {
@@ -144,30 +149,43 @@ namespace ExportPhotos
 
         private void mostrarImagenes()
         {
-            string[] imgList = Directory.GetFiles(textBoxRutaImagenes.Text, "*.jpg");
+            if(!textBoxRutaImagenes.Text.Equals(""))
+             { 
+                    string[] imgList = Directory.GetFiles(textBoxRutaImagenes.Text, "*.jpg");
 
-            if (imgList.Length != 0)
+                    if (imgList.Length != 0)
+                    {
+                        int cont = 0;
+                        if (imageList.Images.Count != 0)
+                        {
+                            cont = imageList.Images.Count;
+                        }
+                        foreach (String rutaImagen in imgList)
+                        {
+                            ListViewItem item1 = new ListViewItem(rutaImagen, cont);
+
+                            listView1.Items.Add(item1);
+ 
+                            imageList.Images.Add(getFileStream(rutaImagen));
+
+                            cont++;
+                        }
+                    }
+            }
+        }
+   
+
+        private System.Drawing.Image getFileStream(string Path)
+        {
+            using (FileStream file = new FileStream(Path, FileMode.Open, FileAccess.Read))
             {
-                int cont = 0;
-                if (imageList.Images.Count != 0)
-                {
-                    cont = imageList.Images.Count;
-                }
-                foreach (String rutaImagen in imgList)
-                {
-                    ListViewItem item1 = new ListViewItem(rutaImagen, cont);
-
-                    listView1.Items.Add(item1);
-
-                    imageList.Images.Add(Bitmap.FromFile(rutaImagen));
-                   // imageListOrden.Images.Add(Bitmap.FromFile(rutaImagen));
-                    cont++;
-                }
+                return (System.Drawing.Image.FromStream(file));
             }
         }
 
         private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             listViewOrden.Sort();
             
             ListView lvi = (ListView)sender;
@@ -184,12 +202,12 @@ namespace ExportPhotos
 
                     listViewOrden.Items.Add(item);
                     
-                }
+                } 
             }
 
             label8.Text = listViewOrden.Items.Count.ToString();
             textBoxPos.Text = "";
-
+ 
             cargarImagenesOrden();
         }
 
@@ -349,7 +367,7 @@ namespace ExportPhotos
             {
                 String ruta = item.SubItems[2].Text;
 
-                imageListOrden.Images.Add(Bitmap.FromFile(ruta));
+                imageListOrden.Images.Add(getFileStream(ruta));
                 item.ImageIndex = item.Index;
             }
 
@@ -557,5 +575,37 @@ namespace ExportPhotos
             }
         }
 
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+           
+            foreach (ListViewItem l in listView1.Items)
+            {
+                if (l.Selected)
+                {
+                    String selectedImage = l.Text;
+
+                    System.Diagnostics.ProcessStartInfo procInfo = new System.Diagnostics.ProcessStartInfo();
+                    procInfo.FileName = ("mspaint.exe");
+                    procInfo.Arguments = selectedImage;
+
+                    System.Diagnostics.Process.Start(procInfo);
+
+                }
+            }
+
+            listView1.Clear();
+            mostrarImagenes();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            listView1.Clear();
+            mostrarImagenes();
+        }
     }
 }

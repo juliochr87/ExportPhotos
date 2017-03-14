@@ -83,6 +83,8 @@
             this.listViewViviendas = new System.Windows.Forms.ListView();
             this.imageListOrden = new System.Windows.Forms.ImageList(this.components);
             this.folderBrowserDialogImagenes = new System.Windows.Forms.FolderBrowserDialog();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -191,6 +193,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button10);
+            this.groupBox4.Controls.Add(this.button9);
             this.groupBox4.Controls.Add(this.button4);
             this.groupBox4.Controls.Add(this.listView1);
             this.groupBox4.Controls.Add(this.label9);
@@ -221,6 +225,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Tile;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_1);
             // 
             // label9
             // 
@@ -613,6 +618,26 @@
             this.imageListOrden.ImageSize = new System.Drawing.Size(16, 16);
             this.imageListOrden.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(1175, 478);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(138, 35);
+            this.button9.TabIndex = 8;
+            this.button9.Text = "Abrir imagen";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(1319, 478);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(155, 35);
+            this.button10.TabIndex = 9;
+            this.button10.Text = "Refrescar imagenes";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -698,6 +723,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ImageList imageListOrden;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogImagenes;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
     }
 }
 
