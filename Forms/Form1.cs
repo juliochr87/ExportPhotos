@@ -16,6 +16,8 @@ namespace ExportPhotos
     {
         private static String STRING_RUTA_INFORMES = ConfigurationManager.AppSettings["RUTA_INFORME"];
         private static String STRING_RUTA_IMAGENES = ConfigurationManager.AppSettings["RUTA_IMAGEN"];
+        private static String RUTA_IMAGENES_DARIEN = ConfigurationManager.AppSettings["RUTA_IMAGENES_DARIEN"];
+
 
         private static String STRING_TAB = ConfigurationManager.AppSettings["TAB"];
 
@@ -149,29 +151,38 @@ namespace ExportPhotos
 
         private void mostrarImagenes()
         {
-            if(!textBoxRutaImagenes.Text.Equals(""))
-             { 
-                    string[] imgList = Directory.GetFiles(textBoxRutaImagenes.Text, "*.jpg");
+            listView1.Items.Clear();
 
-                    if (imgList.Length != 0)
+            String rutaImagenes = RUTA_IMAGENES_DARIEN + "\\" + textBoxNumeroPredio.Text;
+
+            try
+            {
+                string[] imgList = Directory.GetFiles(rutaImagenes, "*.jpg");
+
+                if (imgList.Length != 0)
+                {
+                    int cont = 0;
+                    if (imageList.Images.Count != 0)
                     {
-                        int cont = 0;
-                        if (imageList.Images.Count != 0)
-                        {
-                            cont = imageList.Images.Count;
-                        }
-                        foreach (String rutaImagen in imgList)
-                        {
-                            ListViewItem item1 = new ListViewItem(rutaImagen, cont);
-
-                            listView1.Items.Add(item1);
- 
-                            imageList.Images.Add(getFileStream(rutaImagen));
-
-                            cont++;
-                        }
+                        cont = imageList.Images.Count;
                     }
+                    foreach (String rutaImagen in imgList)
+                    {
+                        ListViewItem item1 = new ListViewItem(rutaImagen, cont);
+
+                        listView1.Items.Add(item1);
+
+                        imageList.Images.Add(getFileStream(rutaImagen));
+
+                        cont++;
+                    }
+                }
             }
+            catch (Exception)
+            {
+            }
+
+
         }
    
 
@@ -211,16 +222,6 @@ namespace ExportPhotos
             cargarImagenesOrden();
         }
 
-        private void buttonFolder_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send(STRING_TAB);
-            if (folderBrowserDialogImagenes.ShowDialog() == DialogResult.OK)
-            {
-                textBoxRutaImagenes.Text = folderBrowserDialogImagenes.SelectedPath;
-                mostrarImagenes();
-            }
-
-        }
 
         private void buttonRutaPdf_Click(object sender, EventArgs e)
         {
@@ -252,7 +253,7 @@ namespace ExportPhotos
             {
                 labelMensaje.Visible = false;
 
-                String rutaImagenes = textBoxRutaImagenes.Text;
+                String rutaImagenes = RUTA_IMAGENES_DARIEN + "\\" + textBoxNumeroPredio.Text;
                 String path = "";
 
                 if (radioButton3.Checked.Equals(true))
@@ -462,7 +463,7 @@ namespace ExportPhotos
                 String numeroCasa = textBoxNumeroCasa.Text;
                 String predio = textBoxNumeroPredio.Text;
                 String provincia = textBoxProvincia.Text;
-                String rutaImagenes = textBoxRutaImagenes.Text;
+               
                 String rutaPDF = textBoxRutaPDF.Text;
 
                 String reporte = "";
@@ -605,6 +606,11 @@ namespace ExportPhotos
         private void button10_Click(object sender, EventArgs e)
         {
             listView1.Clear();
+            mostrarImagenes();
+        }
+
+        private void textBoxNumeroPredio_TextChanged(object sender, EventArgs e)
+        {            
             mostrarImagenes();
         }
     }

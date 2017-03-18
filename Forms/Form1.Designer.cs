@@ -40,6 +40,8 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.label9 = new System.Windows.Forms.Label();
@@ -47,8 +49,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.buttonRutaPdf = new System.Windows.Forms.Button();
             this.textBoxRutaPDF = new System.Windows.Forms.TextBox();
-            this.buttonRutaImagenes = new System.Windows.Forms.Button();
-            this.textBoxRutaImagenes = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.textBoxCorregimiento = new System.Windows.Forms.TextBox();
@@ -83,8 +83,6 @@
             this.listViewViviendas = new System.Windows.Forms.ListView();
             this.imageListOrden = new System.Windows.Forms.ImageList(this.components);
             this.folderBrowserDialogImagenes = new System.Windows.Forms.FolderBrowserDialog();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -206,6 +204,26 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Imagenes";
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(1319, 478);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(155, 35);
+            this.button10.TabIndex = 9;
+            this.button10.Text = "Refrescar imagenes";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(1175, 478);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(138, 35);
+            this.button9.TabIndex = 8;
+            this.button9.Text = "Abrir imagen";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(1480, 478);
@@ -247,8 +265,6 @@
             // 
             this.groupBox3.Controls.Add(this.buttonRutaPdf);
             this.groupBox3.Controls.Add(this.textBoxRutaPDF);
-            this.groupBox3.Controls.Add(this.buttonRutaImagenes);
-            this.groupBox3.Controls.Add(this.textBoxRutaImagenes);
             this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(732, 100);
@@ -258,7 +274,7 @@
             // 
             // buttonRutaPdf
             // 
-            this.buttonRutaPdf.Location = new System.Drawing.Point(10, 59);
+            this.buttonRutaPdf.Location = new System.Drawing.Point(6, 24);
             this.buttonRutaPdf.Name = "buttonRutaPdf";
             this.buttonRutaPdf.Size = new System.Drawing.Size(123, 28);
             this.buttonRutaPdf.TabIndex = 3;
@@ -268,27 +284,10 @@
             // 
             // textBoxRutaPDF
             // 
-            this.textBoxRutaPDF.Location = new System.Drawing.Point(139, 65);
+            this.textBoxRutaPDF.Location = new System.Drawing.Point(135, 27);
             this.textBoxRutaPDF.Name = "textBoxRutaPDF";
             this.textBoxRutaPDF.Size = new System.Drawing.Size(575, 22);
             this.textBoxRutaPDF.TabIndex = 4;
-            // 
-            // buttonRutaImagenes
-            // 
-            this.buttonRutaImagenes.Location = new System.Drawing.Point(10, 25);
-            this.buttonRutaImagenes.Name = "buttonRutaImagenes";
-            this.buttonRutaImagenes.Size = new System.Drawing.Size(123, 28);
-            this.buttonRutaImagenes.TabIndex = 1;
-            this.buttonRutaImagenes.Text = "Ruta imagenes";
-            this.buttonRutaImagenes.UseVisualStyleBackColor = true;
-            this.buttonRutaImagenes.Click += new System.EventHandler(this.buttonFolder_Click);
-            // 
-            // textBoxRutaImagenes
-            // 
-            this.textBoxRutaImagenes.Location = new System.Drawing.Point(139, 27);
-            this.textBoxRutaImagenes.Name = "textBoxRutaImagenes";
-            this.textBoxRutaImagenes.Size = new System.Drawing.Size(575, 22);
-            this.textBoxRutaImagenes.TabIndex = 2;
             // 
             // groupBox2
             // 
@@ -385,6 +384,7 @@
             this.textBoxNumeroPredio.Name = "textBoxNumeroPredio";
             this.textBoxNumeroPredio.Size = new System.Drawing.Size(229, 22);
             this.textBoxNumeroPredio.TabIndex = 8;
+            this.textBoxNumeroPredio.TextChanged += new System.EventHandler(this.textBoxNumeroPredio_TextChanged);
             // 
             // textBoxBeneficiario
             // 
@@ -618,26 +618,6 @@
             this.imageListOrden.ImageSize = new System.Drawing.Size(16, 16);
             this.imageListOrden.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(1175, 478);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(138, 35);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "Abrir imagen";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(1319, 478);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(155, 35);
-            this.button10.TabIndex = 9;
-            this.button10.Text = "Refrescar imagenes";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -681,8 +661,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button buttonRutaPdf;
         private System.Windows.Forms.TextBox textBoxRutaPDF;
-        private System.Windows.Forms.Button buttonRutaImagenes;
-        private System.Windows.Forms.TextBox textBoxRutaImagenes;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBoxCorregimiento;
