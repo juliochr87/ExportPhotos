@@ -17,7 +17,7 @@ namespace ExportPhotos
         private static String STRING_RUTA_INFORMES = ConfigurationManager.AppSettings["RUTA_INFORME"];
         private static String STRING_RUTA_IMAGENES = ConfigurationManager.AppSettings["RUTA_IMAGEN"];
         private static String RUTA_IMAGENES_DARIEN = ConfigurationManager.AppSettings["RUTA_IMAGENES_DARIEN"];
-
+        private static String RUTA_PDF = ConfigurationManager.AppSettings["RUTA_PDF"];
 
         private static String STRING_TAB = ConfigurationManager.AppSettings["TAB"];
 
@@ -222,16 +222,6 @@ namespace ExportPhotos
             cargarImagenesOrden();
         }
 
-
-        private void buttonRutaPdf_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send(STRING_TAB);
-            if (folderBrowserDialogInforme.ShowDialog() == DialogResult.OK)
-            {
-                textBoxRutaPDF.Text = folderBrowserDialogInforme.SelectedPath;
-            }
-        }
-
         private void buttonGenerarPdf_Click(object sender, EventArgs e)
         {
           
@@ -243,8 +233,7 @@ namespace ExportPhotos
                 textBoxDistrito.Text.Equals("") ||
                 textBoxNumeroCasa.Text.Equals("") ||
                 textBoxNumeroPredio.Text.Equals("") ||
-                textBoxProvincia.Text.Equals("") ||
-                textBoxRutaPDF.Text.Equals("") || listViewOrden.Items.Count == 0)
+                textBoxProvincia.Text.Equals("") || listViewOrden.Items.Count == 0)
             {
                 labelMensaje.Text = "Por favor complete todos los campos";
                 labelMensaje.Visible = true;
@@ -258,17 +247,17 @@ namespace ExportPhotos
 
                 if (radioButton3.Checked.Equals(true))
                 {
-                    path = textBoxRutaPDF.Text + "\\"+STRING_PREFIJO_INFORME_FOTOGRAFICO + textBoxNumeroCasa.Text + ".pdf";
+                    path = RUTA_PDF + "\\"+STRING_PREFIJO_INFORME_FOTOGRAFICO + textBoxNumeroCasa.Text + ".pdf";
                     new Informe().generarPdfInformeFotografico(path, textBoxBeneficiario.Text, textBoxCedula.Text, textBoxNumeroCasa.Text, textBoxNumeroPredio.Text, textBoxProvincia.Text, textBoxDistrito.Text, textBoxCorregimiento.Text, dateTimePicker1.Text, rutaImagenes, listViewOrden);                 
                 }
                 if (radioButton2.Checked.Equals(true))
                 {
-                     path = textBoxRutaPDF.Text + "\\" + STRING_PREFIJO_INFORME_HIDROSTATICO + textBoxNumeroCasa.Text + ".pdf";
+                     path = RUTA_PDF + "\\" + STRING_PREFIJO_INFORME_HIDROSTATICO + textBoxNumeroCasa.Text + ".pdf";
                      new Informe().generarPdfInformeHidroestatico(path, textBoxBeneficiario.Text, textBoxCedula.Text, textBoxNumeroCasa.Text, textBoxNumeroPredio.Text, textBoxProvincia.Text, textBoxDistrito.Text, textBoxCorregimiento.Text, dateTimePicker1.Text, rutaImagenes, listViewOrden);
                 }
                 if (radioButton1.Checked.Equals(true))
                 {
-                     path = textBoxRutaPDF.Text + "\\" + STRING_PREFIJO_INFORME_ELECTRICO + textBoxNumeroCasa.Text + ".pdf";
+                     path = RUTA_PDF + "\\" + STRING_PREFIJO_INFORME_ELECTRICO + textBoxNumeroCasa.Text + ".pdf";
                      new Informe().generarPdfInformeElectrico(path, textBoxBeneficiario.Text, textBoxCedula.Text, textBoxNumeroCasa.Text, textBoxNumeroPredio.Text, textBoxProvincia.Text, textBoxDistrito.Text, textBoxCorregimiento.Text, dateTimePicker1.Text, rutaImagenes, listViewOrden);
                 }
 
@@ -463,9 +452,7 @@ namespace ExportPhotos
                 String numeroCasa = textBoxNumeroCasa.Text;
                 String predio = textBoxNumeroPredio.Text;
                 String provincia = textBoxProvincia.Text;
-               
-                String rutaPDF = textBoxRutaPDF.Text;
-
+ 
                 String reporte = "";
                 if (radioButton1.Checked)
                     reporte = "E";

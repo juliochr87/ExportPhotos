@@ -50,12 +50,14 @@ namespace ExportPhotos.Utils
 
             doc = imprimirCabezera(doc, cabezera);
             doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/hidroestatico/Hidro_4.jpg");
-            doc.NewPage();
 
-            doc = imprimirImagenesOrden(doc, cabezera, listViewOrden);
             doc.NewPage();
             doc = imprimirCabezera(doc, cabezera);
             doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/hidroestatico/Hidro_6.jpg");
+
+            doc.NewPage();
+            doc = imprimirImagenesOrden(doc, cabezera, listViewOrden);
+            
             doc.Close();
             writer.Close();
 
@@ -85,15 +87,18 @@ namespace ExportPhotos.Utils
             doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/electrico/Electrico_3.jpg");
             doc.NewPage();
             doc = imprimirCabezera(doc, cabezera);
-            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/Electrico_4a.jpg");
+            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/electrico/Electrico_4a.jpg");
             doc.NewPage();
             doc = imprimirCabezera(doc, cabezera);
             doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/electrico/Electrico_4b.jpg");
+
+           // doc.NewPage();
+           // doc = imprimirCabezera(doc, cabezera);
+           // doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/electrico/Electrico_6.jpg");
+
             doc.NewPage();
             doc = imprimirImagenesOrden(doc, cabezera, listViewOrden);
-            doc.NewPage();
-            doc = imprimirCabezera(doc, cabezera);
-            doc = imprimirImagenEstatica(doc, STRING_RUTA_IMAGENES + "/electrico/Electrico_6.jpg");
+         
             doc.Close();
             writer.Close();
 

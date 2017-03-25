@@ -39,16 +39,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button7 = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBoxPos = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.buttonRutaPdf = new System.Windows.Forms.Button();
-            this.textBoxRutaPDF = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.textBoxCorregimiento = new System.Windows.Forms.TextBox();
@@ -83,21 +73,27 @@
             this.listViewViviendas = new System.Windows.Forms.ListView();
             this.imageListOrden = new System.Windows.Forms.ImageList(this.components);
             this.folderBrowserDialogImagenes = new System.Windows.Forms.FolderBrowserDialog();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxPos = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonGenerarPdf
             // 
-            this.buttonGenerarPdf.Location = new System.Drawing.Point(17, 100);
+            this.buttonGenerarPdf.Location = new System.Drawing.Point(426, 70);
             this.buttonGenerarPdf.Name = "buttonGenerarPdf";
-            this.buttonGenerarPdf.Size = new System.Drawing.Size(215, 35);
+            this.buttonGenerarPdf.Size = new System.Drawing.Size(212, 34);
             this.buttonGenerarPdf.TabIndex = 0;
             this.buttonGenerarPdf.Text = "Generar Informe Seleccionado";
             this.buttonGenerarPdf.UseVisualStyleBackColor = true;
@@ -113,7 +109,7 @@
             // 
             this.labelMensaje.AutoSize = true;
             this.labelMensaje.ForeColor = System.Drawing.Color.Red;
-            this.labelMensaje.Location = new System.Drawing.Point(6, 215);
+            this.labelMensaje.Location = new System.Drawing.Point(14, 128);
             this.labelMensaje.Name = "labelMensaje";
             this.labelMensaje.Size = new System.Drawing.Size(91, 17);
             this.labelMensaje.TabIndex = 6;
@@ -127,20 +123,19 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1691, 862);
+            this.tabControl1.Size = new System.Drawing.Size(1890, 862);
             this.tabControl1.TabIndex = 8;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1683, 833);
+            this.tabPage1.Size = new System.Drawing.Size(1882, 833);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Agregar Viviendas";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -148,14 +143,17 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.radioButton3);
             this.groupBox5.Controls.Add(this.label11);
+            this.groupBox5.Controls.Add(this.radioButton2);
             this.groupBox5.Controls.Add(this.dateTimePicker1);
+            this.groupBox5.Controls.Add(this.radioButton1);
             this.groupBox5.Controls.Add(this.button7);
             this.groupBox5.Controls.Add(this.labelMensaje);
             this.groupBox5.Controls.Add(this.buttonGenerarPdf);
-            this.groupBox5.Location = new System.Drawing.Point(1403, 6);
+            this.groupBox5.Location = new System.Drawing.Point(746, 8);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(248, 265);
+            this.groupBox5.Size = new System.Drawing.Size(644, 152);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Reportes";
@@ -163,7 +161,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(14, 23);
+            this.label11.Location = new System.Drawing.Point(14, 27);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(102, 17);
             this.label11.TabIndex = 14;
@@ -173,7 +171,7 @@
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(120, 21);
+            this.dateTimePicker1.Location = new System.Drawing.Point(122, 24);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(112, 22);
             this.dateTimePicker1.TabIndex = 13;
@@ -181,113 +179,13 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(17, 56);
+            this.button7.Location = new System.Drawing.Point(426, 23);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(215, 35);
+            this.button7.Size = new System.Drawing.Size(212, 35);
             this.button7.TabIndex = 12;
             this.button7.Text = "Guardar Informe";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.button10);
-            this.groupBox4.Controls.Add(this.button9);
-            this.groupBox4.Controls.Add(this.button4);
-            this.groupBox4.Controls.Add(this.listView1);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.textBoxPos);
-            this.groupBox4.Location = new System.Drawing.Point(6, 277);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1645, 534);
-            this.groupBox4.TabIndex = 11;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Imagenes";
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(1319, 478);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(155, 35);
-            this.button10.TabIndex = 9;
-            this.button10.Text = "Refrescar imagenes";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(1175, 478);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(138, 35);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "Abrir imagen";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(1480, 478);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(138, 35);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Limpiar imagenes";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // listView1
-            // 
-            this.listView1.LargeImageList = this.imageList;
-            this.listView1.Location = new System.Drawing.Point(10, 21);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1608, 451);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Tile;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_1);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 494);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(131, 17);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Posición de imagen";
-            // 
-            // textBoxPos
-            // 
-            this.textBoxPos.Location = new System.Drawing.Point(139, 491);
-            this.textBoxPos.Name = "textBoxPos";
-            this.textBoxPos.Size = new System.Drawing.Size(101, 22);
-            this.textBoxPos.TabIndex = 4;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.buttonRutaPdf);
-            this.groupBox3.Controls.Add(this.textBoxRutaPDF);
-            this.groupBox3.Location = new System.Drawing.Point(6, 6);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(732, 100);
-            this.groupBox3.TabIndex = 10;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Configuración";
-            // 
-            // buttonRutaPdf
-            // 
-            this.buttonRutaPdf.Location = new System.Drawing.Point(6, 24);
-            this.buttonRutaPdf.Name = "buttonRutaPdf";
-            this.buttonRutaPdf.Size = new System.Drawing.Size(123, 28);
-            this.buttonRutaPdf.TabIndex = 3;
-            this.buttonRutaPdf.Text = "Ruta PDF";
-            this.buttonRutaPdf.UseVisualStyleBackColor = true;
-            this.buttonRutaPdf.Click += new System.EventHandler(this.buttonRutaPdf_Click);
-            // 
-            // textBoxRutaPDF
-            // 
-            this.textBoxRutaPDF.Location = new System.Drawing.Point(135, 27);
-            this.textBoxRutaPDF.Name = "textBoxRutaPDF";
-            this.textBoxRutaPDF.Size = new System.Drawing.Size(575, 22);
-            this.textBoxRutaPDF.TabIndex = 4;
             // 
             // groupBox2
             // 
@@ -306,9 +204,9 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(6, 112);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(734, 159);
+            this.groupBox2.Size = new System.Drawing.Size(734, 154);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos";
@@ -439,17 +337,14 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.listViewOrden);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(746, 6);
+            this.groupBox1.Location = new System.Drawing.Point(1396, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(651, 265);
+            this.groupBox1.Size = new System.Drawing.Size(480, 803);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Orden";
@@ -458,7 +353,7 @@
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(487, 159);
+            this.radioButton3.Location = new System.Drawing.Point(17, 105);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(151, 21);
             this.radioButton3.TabIndex = 11;
@@ -470,7 +365,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(487, 134);
+            this.radioButton2.Location = new System.Drawing.Point(17, 78);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(163, 21);
             this.radioButton2.TabIndex = 10;
@@ -481,7 +376,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(487, 107);
+            this.radioButton1.Location = new System.Drawing.Point(17, 52);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(134, 21);
             this.radioButton1.TabIndex = 9;
@@ -493,7 +388,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label10.Location = new System.Drawing.Point(482, 190);
+            this.label10.Location = new System.Drawing.Point(6, 29);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(121, 29);
             this.label10.TabIndex = 7;
@@ -501,9 +396,9 @@
             // 
             // listViewOrden
             // 
-            this.listViewOrden.Location = new System.Drawing.Point(6, 21);
+            this.listViewOrden.Location = new System.Drawing.Point(11, 70);
             this.listViewOrden.Name = "listViewOrden";
-            this.listViewOrden.Size = new System.Drawing.Size(470, 232);
+            this.listViewOrden.Size = new System.Drawing.Size(463, 727);
             this.listViewOrden.TabIndex = 6;
             this.listViewOrden.UseCompatibleStateImageBehavior = false;
             // 
@@ -511,7 +406,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(498, 224);
+            this.label8.Location = new System.Drawing.Point(133, 29);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(81, 29);
             this.label8.TabIndex = 3;
@@ -519,7 +414,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(487, 65);
+            this.button2.Location = new System.Drawing.Point(358, 23);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(116, 35);
             this.button2.TabIndex = 2;
@@ -529,7 +424,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(485, 21);
+            this.button1.Location = new System.Drawing.Point(236, 23);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(116, 35);
             this.button1.TabIndex = 1;
@@ -548,7 +443,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1683, 833);
+            this.tabPage2.Size = new System.Drawing.Size(1855, 833);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Consultar Viviendas";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -618,12 +513,84 @@
             this.imageListOrden.ImageSize = new System.Drawing.Size(16, 16);
             this.imageListOrden.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // listView1
+            // 
+            this.listView1.LargeImageList = this.imageList;
+            this.listView1.Location = new System.Drawing.Point(10, 67);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(1368, 572);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Tile;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_1);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1240, 21);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(138, 35);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Limpiar imagenes";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(935, 21);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(138, 35);
+            this.button9.TabIndex = 8;
+            this.button9.Text = "Abrir imagen";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(1079, 21);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(155, 35);
+            this.button10.TabIndex = 9;
+            this.button10.Text = "Refrescar imagenes";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.textBoxPos);
+            this.groupBox4.Controls.Add(this.button10);
+            this.groupBox4.Controls.Add(this.button9);
+            this.groupBox4.Controls.Add(this.button4);
+            this.groupBox4.Controls.Add(this.listView1);
+            this.groupBox4.Location = new System.Drawing.Point(6, 166);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1384, 645);
+            this.groupBox4.TabIndex = 11;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Imagenes";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 30);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(131, 17);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Posición de imagen";
+            // 
+            // textBoxPos
+            // 
+            this.textBoxPos.Location = new System.Drawing.Point(144, 27);
+            this.textBoxPos.Name = "textBoxPos";
+            this.textBoxPos.Size = new System.Drawing.Size(101, 22);
+            this.textBoxPos.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1772, 897);
+            this.ClientSize = new System.Drawing.Size(1914, 897);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -633,16 +600,14 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -655,12 +620,6 @@
         private System.Windows.Forms.Label labelMensaje;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button buttonRutaPdf;
-        private System.Windows.Forms.TextBox textBoxRutaPDF;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBoxCorregimiento;
@@ -680,8 +639,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ListView listViewOrden;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBoxPos;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
@@ -701,8 +658,13 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ImageList imageListOrden;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogImagenes;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxPos;
     }
 }
 
